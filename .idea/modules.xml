@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BS/activityProject.iml" filepath="$PROJECT_DIR$/BS/activityProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/depart6/depart6.iml" filepath="$PROJECT_DIR$/depart6/depart6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mcSecurity/mcSecurity.iml" filepath="$PROJECT_DIR$/mcSecurity/mcSecurity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mcboun1.iml" filepath="$PROJECT_DIR$/.idea/mcboun1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/projectEuroka/projectEuroka.iml" filepath="$PROJECT_DIR$/projectEuroka/projectEuroka.iml" />
+    </modules>
+  </component>
+</project>
