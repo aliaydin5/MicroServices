@@ -23,6 +23,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
@@ -84,6 +88,37 @@
 			<artifactId>modelmapper</artifactId>
 			<version>3.1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+			<version>3.1.10</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-sleuth-zipkin -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+			<version>3.1.10</version>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-observation</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-tracing-bridge-otel</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.opentelemetry</groupId>
+			<artifactId>opentelemetry-exporter-zipkin</artifactId>
+		</dependency>
+
 
 
 		<dependency>
@@ -100,6 +135,8 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<version>1.18.30</version>
+			<scope>provided</scope>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
@@ -114,7 +151,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+
 				<configuration>
+					<image>
+						<name>docker.io/aliaydin55/android-${project.artifactId}:${project.version}</name>
+					</image>
+					<pullPolicy>IF_NOT_PRESENT</pullPolicy>
+
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

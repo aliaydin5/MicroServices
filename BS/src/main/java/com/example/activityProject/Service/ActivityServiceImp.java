@@ -2,6 +2,7 @@ package com.example.activityProject.Service;
 
 import com.example.activityProject.DTO.ActivityDto;
 import com.example.activityProject.DTO.ActivityDtoMessage;
+import com.example.activityProject.DTO.RabbitMessage;
 import com.example.activityProject.DTO.UserDto;
 import com.example.activityProject.Entity.Activity;
 import com.example.activityProject.Entity.User;
@@ -9,6 +10,7 @@ import com.example.activityProject.Repository.ActivityRepository;
 import com.example.activityProject.Repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -18,11 +20,13 @@ public class ActivityServiceImp implements ActivityService {
     ModelMapper modelMapper;
     ActivityRepository activityRepository;
     UserRepository userRepository;
+    RabbitTemplate rabbitTemplate;
 
-    public ActivityServiceImp(ModelMapper modelMapper, ActivityRepository activityRepository,UserRepository userRepository) {
+    public ActivityServiceImp(ModelMapper modelMapper, ActivityRepository activityRepository,UserRepository userRepository,RabbitTemplate rabbitTemplate) {
         this.modelMapper = modelMapper;
         this.activityRepository = activityRepository;
         this.userRepository=userRepository;
+        this.rabbitTemplate=rabbitTemplate;
     }
 
     @Override
@@ -87,6 +91,13 @@ public class ActivityServiceImp implements ActivityService {
             return activityDtoList1;
         }
 
+    }
+
+    @Override
+    public String getRabbitMQ(String name) {
+        RabbitMessage rabbitMessage= new RabbitMessage(1L,name);
+        rabbitTemplate.convertAndSend("Direct-Exchange","boun",rabbitMessage);
+        return "Success";
     }
 
 

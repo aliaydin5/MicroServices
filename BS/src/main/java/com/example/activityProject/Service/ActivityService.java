@@ -18,4 +18,6 @@ public interface ActivityService {
     ActivityDto saveActivityUser(long id, ActivityDto activityDto);
 
      List<ActivityDto> getActivityDetails(Long activityId);
+
+    String getRabbitMQ(String name);
 }

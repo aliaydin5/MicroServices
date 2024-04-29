@@ -1,20 +1,43 @@
 package com.depart.depart6.Service;
 
+import com.depart.depart6.Dto.RabbitMessage;
 import com.depart.depart6.Entity.Depart;
+import com.depart.depart6.Entity.File;
+import com.depart.depart6.Entity.UsersFile;
 import com.depart.depart6.Repository.DepartRepository;
+import com.depart.depart6.Repository.UsersFileRepo;
 import lombok.NoArgsConstructor;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.xml.xpath.XPath;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
 public class DepartService {
-
+    @Autowired
     private DepartRepository departRepository;
 
-    public DepartService(DepartRepository departRepository) {
-        this.departRepository = departRepository;
+    @Autowired
+    private UsersFileRepo usersFileRepo;
+    private final Path pt= Paths.get("uploads");
+
+
+
+    public void make(){
+
+        try {
+            Files.createDirectories(pt);
+
+        }catch (Exception e){
+
+        }
     }
 
     public List<Depart> getAll(){
@@ -24,5 +47,30 @@ public class DepartService {
 
     public Depart save(Depart depart){
         return departRepository.save(depart);
+    }
+
+
+    public String saveImage(MultipartFile multipartFile,long id){
+
+        try {
+            Path pth=this.pt.resolve(multipartFile.getOriginalFilename());
+            Files.copy(multipartFile.getInputStream(), pth);
+            File file=new File();
+            file.setPath(pth.toString());
+            UsersFile usersFile=new UsersFile();
+            usersFile.setUserId(id);
+            usersFile.setFileId(file.getId());
+            usersFileRepo.save(usersFile);
+            return new String("Dosya kaydedildi");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @RabbitListener(queues = "Boun")
+    public void getRabbitMQMessage(RabbitMessage rabbitMessage){
+
+        System.out.println(rabbitMessage.getName());
     }
 }

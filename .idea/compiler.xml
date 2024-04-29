@@ -9,21 +9,16 @@
         <outputRelativeToContentRoot value="true" />
         <module name="projectEuroka" />
         <module name="depart6" />
+        <module name="RabbitMQ2" />
         <module name="activityProject" />
         <module name="gateway" />
         <module name="mcSecurity" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="activityProject" target="17" />
-      <module name="depart6" target="17" />
-      <module name="gateway" target="17" />
-      <module name="mcSecurity" target="17" />
-      <module name="projectEuroka" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="RabbitMQ2" options="-parameters" />
       <module name="activityProject" options="-parameters" />
       <module name="depart6" options="-parameters" />
       <module name="gateway" options="-parameters" />

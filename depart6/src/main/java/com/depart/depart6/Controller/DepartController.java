@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.cloud.openfeign.support.FeignHttpClientProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -26,6 +27,11 @@ public class DepartController {
     @PostMapping("/departSave")
     public  ResponseEntity<Depart> saveDepart(@RequestBody Depart depart){
         return ResponseEntity.ok().body(departService.save(depart));
+    }
+
+    @PostMapping("/save/ımage")
+    public ResponseEntity<?> saveImage(@RequestBody MultipartFile multipartFile,@RequestBody long id){
+        return ResponseEntity.ok().body(departService.saveImage(multipartFile,id));
     }
 
 }

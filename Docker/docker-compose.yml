@@ -1,4 +1,4 @@
-version: '3.8'
+
 
 services:
   db:
@@ -11,4 +11,54 @@ services:
       MYSQL_USER: mysql-boun
       MYSQL_PASSWORD: root
     ports:
-      - 3336:3306
+      - "3336:3306"
+
+  s_rabbitmq:
+    container_name: c_rabbitmq
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
+
+  depart6:
+    image: aliaydin55/android-depart6:0.0.1-snapshot
+    mem_limit: 700m
+    ports:
+      - "8080-8080"
+    networks:
+      - currency-network
+    depends_on:
+      - bs-service
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://bs-service:8761/eureka"
+
+  bs-service:
+    image: aliaydin55/android-activityproject:0.0.1-snapshot
+    mem_limit: 700m
+    ports:
+      - "8090-8090"
+    networks:
+      - currency-network
+
+  gateway:
+    image: aliaydin55/android-gateway:0.0.1-snapshot
+    mem_limit: 700m
+    ports:
+      - "8889-8889"
+    networks:
+      - currency-network
+    depends_on:
+      - bs-service
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://bs-service:8761/eureka"
+
+
+
+networks:
+  currency-network:
+
+
+volumes:
+  rabbitmq:

@@ -27,8 +27,12 @@ spring:
           enabled: true
           lowerCaseServiceId: true
 
+
+
 server:
   port: 8889
+
+
 
 eureka:
   client:
@@ -43,3 +47,6 @@ management:
       exposure:
         include: "*"
         exclude: info
+
+
+

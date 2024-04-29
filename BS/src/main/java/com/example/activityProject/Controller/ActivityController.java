@@ -24,6 +24,10 @@ public class ActivityController {
 
         return ResponseEntity.ok().body(activityService.getAll());
     }
+    @GetMapping("/Activity/name")
+    public ResponseEntity<String> getRabbitMQ(@RequestBody ActivityDto activityDto){
+        return new ResponseEntity<>(activityService.getRabbitMQ(activityDto.getActivityName()),HttpStatus.OK);
+    }
     @GetMapping("/Activity/{activityId}")
     public ResponseEntity<?> getActivityDetails(@PathVariable Long activityId){
         return new ResponseEntity<>(activityService.getActivityDetails(activityId),HttpStatus.OK);
