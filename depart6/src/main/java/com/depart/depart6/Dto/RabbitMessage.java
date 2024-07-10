@@ -13,6 +13,9 @@ public class RabbitMessage implements Serializable {
         this.name = name;
     }
 
+    public RabbitMessage() {
+    }
+
     public Long getId() {
         return Id;
     }

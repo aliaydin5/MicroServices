@@ -7,6 +7,7 @@ import com.depart.depart6.Entity.UsersFile;
 import com.depart.depart6.Repository.DepartRepository;
 import com.depart.depart6.Repository.UsersFileRepo;
 import lombok.NoArgsConstructor;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @Service
+@EnableRabbit
 public class DepartService {
     @Autowired
     private DepartRepository departRepository;
@@ -68,7 +70,7 @@ public class DepartService {
 
     }
 
-    @RabbitListener(queues = "Boun")
+    @RabbitListener(queues = "Mobile")
     public void getRabbitMQMessage(RabbitMessage rabbitMessage){
 
         System.out.println(rabbitMessage.getName());
