@@ -95,7 +95,7 @@ public class ActivityServiceImp implements ActivityService {
 
     @Override
     public String getRabbitMQ(String name) {
-        RabbitMessage rabbitMessage= new RabbitMessage(1L,name);
+        RabbitMessage rabbitMessage= new RabbitMessage(1,name);
         rabbitTemplate.convertAndSend("Mobile",rabbitMessage);
         //rabbitTemplate.convertAndSend("Direct-Exchange","boun",rabbitMessage);
 

@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    @Bean
+   /* @Bean
     public ConnectionFactory connectionFactory(){
         ConnectionFactory factory=new CachingConnectionFactory("localhost",5672);
         return factory;
@@ -48,7 +48,7 @@ public class RabbitMQConfig {
         configurer.configure(factory, connectionFactory);
         factory.setMessageConverter(jackson2JsonMessageConverter());
         return factory;
-    }
+    }*/
 
 
 

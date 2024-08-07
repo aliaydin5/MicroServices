@@ -3,21 +3,20 @@ package com.example.activityProject.DTO;
 import java.io.Serializable;
 
 public class RabbitMessage implements Serializable {
-    private Long Id;
+    private int Id;
 
     private String name;
 
-    public RabbitMessage(Long id, String name) {
-        super();
+    public RabbitMessage(int id, String name) {
         Id = id;
         this.name = name;
     }
 
-    public Long getId() {
+    public int getId() {
         return Id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         Id = id;
     }
 

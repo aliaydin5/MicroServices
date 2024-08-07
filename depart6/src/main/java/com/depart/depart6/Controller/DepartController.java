@@ -1,6 +1,7 @@
 package com.depart.depart6.Controller;
 
 import com.depart.depart6.Entity.Depart;
+import com.depart.depart6.Entity.Product;
 import com.depart.depart6.Service.DepartService;
 import lombok.NoArgsConstructor;
 import org.springframework.cloud.openfeign.support.FeignHttpClientProperties;
@@ -32,6 +33,11 @@ public class DepartController {
     @PostMapping("/save/ımage")
     public ResponseEntity<?> saveImage(@RequestBody MultipartFile multipartFile,@RequestBody long id){
         return ResponseEntity.ok().body(departService.saveImage(multipartFile,id));
+    }
+
+    @PostMapping("/save/product")
+    public ResponseEntity<?> saveProduct(@RequestBody Product product){
+        return ResponseEntity.ok().body(departService.saveProduct(product));
     }
 
 }

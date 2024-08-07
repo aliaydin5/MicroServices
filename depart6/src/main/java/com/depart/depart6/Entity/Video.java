@@ -6,27 +6,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.nio.file.Path;
-import java.util.HashSet;
-import java.util.Set;
-
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class File {
-
+public class Video {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
 
-    private String path;
+    private String url;
+
+
+    private String title;
 
 
 
-
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name ="user_id",referencedColumnName = "id")
+    private User user;
 
 }

@@ -3,8 +3,10 @@ package com.depart.depart6.Service;
 import com.depart.depart6.Dto.RabbitMessage;
 import com.depart.depart6.Entity.Depart;
 import com.depart.depart6.Entity.File;
+import com.depart.depart6.Entity.Product;
 import com.depart.depart6.Entity.UsersFile;
 import com.depart.depart6.Repository.DepartRepository;
+import com.depart.depart6.Repository.ProductRepo;
 import com.depart.depart6.Repository.UsersFileRepo;
 import lombok.NoArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
@@ -28,6 +30,9 @@ public class DepartService {
 
     @Autowired
     private UsersFileRepo usersFileRepo;
+
+    @Autowired
+    private ProductRepo productRepo;
     private final Path pt= Paths.get("uploads");
 
 
@@ -70,9 +75,21 @@ public class DepartService {
 
     }
 
-    @RabbitListener(queues = "Mobile")
+    /*@RabbitListener(queues = "Mobile")
     public void getRabbitMQMessage(RabbitMessage rabbitMessage){
+        Product product=productRepo.findByName(rabbitMessage.getName());
+        int urunsayısı= product.getUrunsayisi()- rabbitMessage.getId();
+        product.setUrunsayisi(urunsayısı);
+        productRepo.save(product);
 
-        System.out.println(rabbitMessage.getName());
+        System.out.println("Name: " + rabbitMessage.getName() + ", ID: " + rabbitMessage.getId());
+
+    }*/
+
+
+    public Product saveProduct(Product product){
+
+        Product product1=productRepo.save(product);
+        return product1;
     }
 }
