@@ -1,9 +1,6 @@
 package com.depart.depart6.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -18,9 +15,14 @@ public class Message {
 
     private String senderId;
     private String receiverId;
-    private String content;
+    private String message;
 
-    private LocalDateTime timestamp;
+    private LocalDateTime time;
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name ="user_id",referencedColumnName = "id")
+    private User userMessage;
 
 
 

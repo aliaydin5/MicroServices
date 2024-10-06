@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,8 +34,14 @@ public class User {
 
 
 
+
+
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<Video> videoSet=new HashSet<>();
+
+
+    @OneToMany(mappedBy = "userMessage",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Message> messageSet=new ArrayList<>();
 
 
 }
