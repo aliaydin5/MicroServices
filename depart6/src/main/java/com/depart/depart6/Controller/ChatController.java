@@ -51,10 +51,9 @@ public class ChatController {
     }
 
     // Kullanıcılar arasındaki geçmiş mesajları getir
-    @GetMapping("/chat/history/{senderId}/{receiverId}")
-    public List<Message> getChatHistory(@PathVariable String senderId, @PathVariable String receiverId) {
-        return messageRepository.findBySenderIdAndReceiverIdOrReceiverIdAndSenderIdOrderByTimeAsc(
-                senderId, receiverId, senderId, receiverId);
+    @GetMapping("/chat/history/{userId}/{receiverId}")
+    public List<Message> getChatHistory(@PathVariable String userId, @PathVariable String receiverId) {
+        return messageRepository.findAll().stream().filter(message -> message.getSenderId()==userId || message.getReceiverId()==receiverId && message.getSenderId()==receiverId || message.getReceiverId()==userId).collect(Collectors.toList());
     }
 
     @GetMapping("/chat/last-messages/{userId}")
