@@ -17,7 +17,7 @@ public class Video {
     private long id;
 
 
-    private String url;
+    private String video_url;
 
 
     private String title;
