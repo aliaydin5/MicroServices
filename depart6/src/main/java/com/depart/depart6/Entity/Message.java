@@ -19,6 +19,10 @@ public class Message {
 
     private LocalDateTime time;
 
+    private boolean is_sender;
+
+    private boolean is_text;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name ="user_id",referencedColumnName = "id")
