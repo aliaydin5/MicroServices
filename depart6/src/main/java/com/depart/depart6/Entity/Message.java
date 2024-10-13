@@ -1,5 +1,6 @@
 package com.depart.depart6.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -26,6 +27,7 @@ public class Message {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name ="user_id",referencedColumnName = "id")
+    @JsonIgnore
     private User userMessage;
 
 

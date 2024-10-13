@@ -61,8 +61,10 @@ public class ChatController {
         for (Message message : messageList) {
             if (message.getSenderId().equals(userId)) {
                 message.set_sender(true);
+                message.set_text(true);
             } else {
                 message.set_sender(false);
+                message.set_text(true);
             }
         }
 
@@ -91,8 +93,8 @@ public class ChatController {
 
             chatSummary.setName(user.getName());
             chatSummary.setLast_message(message.getMessage()); // Son mesaj içeriği
-           // chatSummary.setImage(otherUser.getImage()); // Kullanıcı resmi
-           chatSummary.setOnline(true); // Kullanıcı online mı?
+            chatSummary.setImage(user.getImage()); // Kullanıcı resmi
+            chatSummary.setOnline(true); // Kullanıcı online mı?
             chatSummary.setTime(message.getTime().toString()); // Zaman damgası
           //  chatSummary.setGroup(message.isGroupMessage()); // Grup mesajı mı?
 

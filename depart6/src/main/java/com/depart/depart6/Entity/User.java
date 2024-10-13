@@ -42,6 +42,10 @@ public class User {
     private Set<Video> videoSet=new HashSet<>();
 
 
+    @OneToMany(mappedBy = "user1",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<Photo> photoSet=new HashSet<>();
+
+
     @OneToMany(mappedBy = "userMessage",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Message> messageSet=new ArrayList<>();
 
