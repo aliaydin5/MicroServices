@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -41,10 +38,14 @@ public class ChatController {
         this.messagingTemplate = messagingTemplate;
     }
 
-    @MessageMapping("/chat.sendMessage")
-    public void sendMessage(@Payload MessageDto chatMessage) {
+    @PostMapping("/chat.sendMessage")
+    public void sendMessage(@RequestBody MessageDto chatMessage) {
         chatMessage.setTime(LocalDateTime.now());// Mesaj zaman damgasını ayarla
-        messageRepository.save(modelMapper.map(chatMessage,Message.class));  // Mesajı veritabanına kaydet
+        Message message=new Message();
+        message.setMessage(chatMessage.getMessage());
+        message.setTime(chatMessage.getTime());
+        message.set_sender(true);
+        messageRepository.save(message);  // Mesajı veritabanına kaydet
 
         String destination = "/user/" + chatMessage.getReceiverId() + "/queue/messages";
         messagingTemplate.convertAndSendToUser(chatMessage.getReceiverId(), "/queue/messages", chatMessage);
