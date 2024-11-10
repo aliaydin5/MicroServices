@@ -32,7 +32,7 @@ public class PhotoController {
 
 
 
-    private static final String VIDEO_DIR = "C:\\MicroServices1\\videos\\";
+    private static final String VIDEO_DIR = "C:\\Users\\202002009007\\IdeaProjects\\MicroServicesNew\\videos\\";
 
 
     @PostMapping("/downloads/{userId}")

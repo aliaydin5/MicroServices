@@ -16,10 +16,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -39,7 +36,7 @@ public class VideoController {
 
 
 
-    private static final String VIDEO_DIR = "C:\\MicroServices1\\videos\\";
+    private static final String VIDEO_DIR = "C:\\Users\\202002009007\\IdeaProjects\\MicroServicesNew\\videos\\";
 
 
     @PostMapping("/downloads/{userId}")
@@ -96,14 +93,23 @@ public class VideoController {
                 .collect(Collectors.toList());
 
         if (!videoList.isEmpty()) {
+            List<VideoDto> videoDtoList = new ArrayList<>();
+
+            for (Video video : videoList) {
+                VideoDto videoDto = new VideoDto();
+                //videoDto.setVideoUrl(video.getVideo_url());           // Set video URL
+                videoDto.setName(video.getUser().getName());      // Set user's name from User table
+                videoDto.setImage(video.getVideo_url());  // Set profile image from User table
+                videoDtoList.add(videoDto);
+            }
             // VideoDto'ya mapleme işlemi
-            List<VideoDto> videoDtoList = videoList.stream()
+            /*List<VideoDto> videoDtoList = videoList.stream()
                     .map(video -> new VideoDto(
                             video.getVideo_url(),               // video URL
                             video.getUser().getName(),           // Kullanıcının adı (User tablosundan)
-                            video.getUser().getImage()           // Kullanıcının profil resmi (User tablosundan)
+                            video.getVideo_url()         // Kullanıcının profil resmi (User tablosundan)
                     ))
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList());*/
 
             return new ResponseEntity<>(videoDtoList, HttpStatus.OK);
         } else {

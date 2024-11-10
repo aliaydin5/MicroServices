@@ -1,11 +1,5 @@
 package com.depart.depart6.Dto;
 
-import com.depart.depart6.Entity.User;
-import com.depart.depart6.Entity.Video;
-import lombok.Data;
-
-import java.util.List;
-
 
 public class VideoDto {
 
@@ -14,7 +8,7 @@ public class VideoDto {
     private String image;
 
 
-    public VideoDto(String videoUrl, String name, String image) {
+    public VideoDto() {
         this.videoUrl = videoUrl;
         this.name = name;
         this.image = image;
