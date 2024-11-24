@@ -50,4 +50,9 @@ public class User {
     private List<Message> messageSet=new ArrayList<>();
 
 
+
+    @OneToMany(mappedBy = "userStory",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Story> storySet=new ArrayList<>();
+
+
 }
