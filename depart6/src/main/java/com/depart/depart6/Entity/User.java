@@ -58,4 +58,12 @@ public class User {
     private List<Story> storySet=new ArrayList<>();
 
 
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Friendship> sentFriendRequests = new HashSet<>();
+
+    @OneToMany(mappedBy = "friend", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Friendship> receivedFriendRequests = new HashSet<>();
+
+
 }

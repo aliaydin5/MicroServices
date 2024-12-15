@@ -22,6 +22,11 @@ public class Story {
 
     private String time;
 
+
+
+    @Column(length = 500)
+    private String caption; // Gönderi açıklaması
+
     @ElementCollection
     @CollectionTable(name = "story_images", joinColumns = @JoinColumn(name = "story_id"))
     @Column(name = "image_path")
@@ -33,6 +38,21 @@ public class Story {
     @JoinColumn(name ="user_id",referencedColumnName = "id")
     @JsonBackReference
     private User userStory;
+
+
+    @OneToMany(mappedBy = "story", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments; // Gönderiye ait yorumlar
+
+
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Like> likes; // Gönderiye ait beğeniler
+
+
+
+    public int getLikeCount() {
+        return likes != null ? likes.size() : 0; // Beğeni sayısı
+    }
 
 
 
