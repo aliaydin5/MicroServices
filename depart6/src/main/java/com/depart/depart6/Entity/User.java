@@ -1,5 +1,7 @@
 package com.depart.depart6.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -52,6 +54,7 @@ public class User {
 
 
     @OneToMany(mappedBy = "userStory",cascade = CascadeType.ALL,orphanRemoval = true)
+    @JsonManagedReference
     private List<Story> storySet=new ArrayList<>();
 
 

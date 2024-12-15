@@ -1,5 +1,7 @@
 package com.depart.depart6.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -29,6 +31,7 @@ public class Story {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name ="user_id",referencedColumnName = "id")
+    @JsonBackReference
     private User userStory;
 
 

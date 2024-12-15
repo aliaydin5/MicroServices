@@ -81,7 +81,7 @@ public class ChatController {
 
 
 
-
+        //Burada alttaki fordan dolayı brden çok aynı kullanıcı oluşturuyor
         List<ChatSummaryDto> chatSummaries = new ArrayList<>();
 
         for (Message message : lastMessages) {
