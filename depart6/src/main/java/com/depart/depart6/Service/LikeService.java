@@ -30,7 +30,7 @@ public class LikeService {
         Story story = storyRepo.findById(storyId)
                 .orElseThrow(() -> new RuntimeException("Gönderi bulunamadı"));
 
-        Optional<Like> existingLike = likeRepository.findByUserIdAndPostId(userId, storyId);
+        Optional<Like> existingLike = likeRepository.findByUserIdAndStoryId(userId, storyId);
 
         if (existingLike.isPresent()) {
             likeRepository.delete(existingLike.get());

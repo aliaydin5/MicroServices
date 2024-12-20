@@ -24,9 +24,9 @@ public class CommentController {
         return commentService.addComment(userId, storyId, comment);
     }
 
-    @GetMapping("/{postId}")
-    public List<Comment> getCommentsForPost(@PathVariable Long postId) {
-        return commentService.getCommentsForPost(postId);
+    @GetMapping("/{storyId}")
+    public List<Comment> getCommentsForPost(@PathVariable Long storyId) {
+        return commentService.getCommentsForPost(storyId);
     }
 
     @DeleteMapping("/{commentId}")

@@ -45,7 +45,7 @@ public class Story {
 
 
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "story", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Like> likes; // Gönderiye ait beğeniler
 
 

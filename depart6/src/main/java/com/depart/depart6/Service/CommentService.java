@@ -40,7 +40,7 @@ public class CommentService {
     }
 
     public List<Comment> getCommentsForPost(Long postId) {
-        return commentRepository.findByPostId(postId);
+        return commentRepository.findByStoryId(postId);
     }
 
     public void deleteComment(Long commentId) {

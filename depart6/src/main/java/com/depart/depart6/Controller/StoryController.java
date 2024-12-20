@@ -23,8 +23,8 @@ public class StoryController {
     }
 
     // Kullanıcının konumuna göre yakınlık sırasına göre storyleri listeleyen endpoint
-    @GetMapping("/nearby")
-    public List<StoryDto> getNearbyStories(@RequestParam double latitude, @RequestParam double longitude) {
+    @GetMapping("/nearby/{latitude}/{longitude}")
+    public List<StoryDto> getNearbyStories(@PathVariable double latitude, @PathVariable double longitude) {
         return storyService.getStoriesSortedByProximity(latitude, longitude);
     }
 

@@ -97,9 +97,9 @@ public class VideoController {
 
             for (Video video : videoList) {
                 VideoDto videoDto = new VideoDto();
-                //videoDto.setVideoUrl(video.getVideo_url());           // Set video URL
+                videoDto.setVideoUrl(video.getVideo_url());           // Set video URL
                 videoDto.setName(video.getUser().getName());      // Set user's name from User table
-                videoDto.setImage(video.getVideo_url());  // Set profile image from User table
+                videoDto.setImage(video.getUser().getImage());  // Set profile image from User table
                 videoDtoList.add(videoDto);
             }
             // VideoDto'ya mapleme işlemi
