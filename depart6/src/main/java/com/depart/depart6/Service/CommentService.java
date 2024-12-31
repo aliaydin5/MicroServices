@@ -47,10 +47,11 @@ public class CommentService {
 
     public List<CommentDto> getCommentsForPost(Long postId) {
        List<Comment> commentList= commentRepository.findByStoryId(postId);
-        // Configure ModelMapper to map User's image to CommentDto's image
-        modelMapper.typeMap(Comment.class, CommentDto.class).addMappings(mapper ->
-                mapper.map(src -> src.getUser().getImage(), CommentDto::setImage)
-        );
+        modelMapper.typeMap(Comment.class, CommentDto.class).addMappings(mapper -> {
+            mapper.map(src -> src.getUser().getImage(), CommentDto::setImage);
+            mapper.map(src -> postId, CommentDto::setStoryId); // postId'yi storyId'ye setler
+        });
+
 
         // Map the list of comments to a list of CommentDto and return
         return commentList.stream()

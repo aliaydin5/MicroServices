@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CommentDto {
 
+    private long storyId;
+
     private long id;
 
     private String comment;
