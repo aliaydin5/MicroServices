@@ -1,5 +1,6 @@
 package com.depart.depart6.Controller;
 
+import com.depart.depart6.Dto.CommentDto;
 import com.depart.depart6.Entity.Comment;
 import com.depart.depart6.Service.CommentService;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class CommentController {
     }
 
     @GetMapping("/{storyId}")
-    public List<Comment> getCommentsForPost(@PathVariable Long storyId) {
+    public List<CommentDto> getCommentsForPost(@PathVariable Long storyId) {
         return commentService.getCommentsForPost(storyId);
     }
 

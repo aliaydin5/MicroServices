@@ -31,7 +31,7 @@ public class Comment {
     private String comment; // Yorum içeriği
 
     @Column(nullable = false)
-    private LocalDateTime time; // Yorumun oluşturulma zamanı
+    private String time; // Yorumun oluşturulma zamanı
 
     @Column(nullable = false)
     private Boolean isDeleted = false; // Silinmiş mi durumu
